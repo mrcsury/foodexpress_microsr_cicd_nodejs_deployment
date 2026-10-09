@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FoodExpress - Delicious Food, Delivered Fresh</title>
+  <meta name="description" content="FoodExpress - order pizza, burgers, Indian, Chinese food and desserts online.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body data-page="home">
+  <div id="site-header"></div>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <h1>Delicious Food, <em>Delivered Fresh</em></h1>
+          <p>Pizza, burgers, biryani, noodles and desserts from FoodExpress. Pick your favourites, check out in a minute, and get your confirmation by email.</p>
+          <form class="search-bar" id="hero-search" role="search">
+            <label class="visually-hidden" for="hero-q">Search for food</label>
+            <input id="hero-q" type="search" placeholder="Search pizza, biryani, brownie..." maxlength="60" autocomplete="off">
+            <button class="btn" type="submit">Search</button>
+          </form>
+        </div>
+        <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=900&q=70"
+             alt="A freshly baked pizza on a wooden board" id="hero-img">
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>Popular right now</h2>
+        <p class="muted">A few favourites from our menu.</p>
+        <div id="featured-status"></div>
+        <div class="grid" id="featured"></div>
+        <p class="mt-15"><a class="btn btn-outline" href="/menu.html">See the full menu</a></p>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <h2>How ordering works</h2>
+        <div class="steps">
+          <div class="step"><div class="num">1</div><h3>Pick your food</h3><p class="muted">Browse the menu and add items to your cart.</p></div>
+          <div class="step"><div class="num">2</div><h3>Check out</h3><p class="muted">Enter your name, email, phone and delivery address.</p></div>
+          <div class="step"><div class="num">3</div><h3>Get confirmation</h3><p class="muted">We book your order and email you the details.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <h2>Contact</h2>
+        <div class="panel">
+          <p><strong>FoodExpress</strong> is a demo restaurant created for teaching purposes.</p>
+          <p class="muted">Email: hello@foodexpress.example &middot; Phone: +91 00000 00000 (sample details - not real)</p>
+          <div class="notice notice-info mt-1 mb-0">
+            <strong>Demo notice:</strong> this app does not take real payments and orders are stored only in server memory.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="/js/common.js" defer></script>
+  <script src="/js/menu-card.js" defer></script>
+  <script src="/js/home.js" defer></script>
+</body>
+</html>

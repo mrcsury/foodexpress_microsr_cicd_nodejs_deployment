@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Orders - FoodExpress</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body data-page="orders">
+  <div id="site-header"></div>
+
+  <main class="container section">
+    <h1>My Orders</h1>
+    <div class="notice notice-info" role="note">
+      <strong>Please note:</strong> this demo keeps orders in the server's memory only (no database). All orders disappear when the application restarts.
+    </div>
+
+    <form class="panel narrow" id="lookup-form" novalidate>
+      <label for="order-id">Order ID</label>
+      <div class="search-bar search-bar-tight">
+        <input id="order-id" type="text" placeholder="e.g. FE-7K3M9QXA" maxlength="20" autocomplete="off" class="upper" aria-describedby="lookup-error">
+        <button class="btn" type="submit">Find order</button>
+      </div>
+      <p class="field-error" id="lookup-error" role="alert"></p>
+    </form>
+
+    <div id="order-result" class="panel narrow-lg mt-15" hidden aria-live="polite"></div>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="/js/common.js" defer></script>
+  <script src="/js/order-view.js" defer></script>
+  <script src="/js/orders.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Checkout - FoodExpress</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body data-page="checkout">
+  <div id="site-header"></div>
+
+  <main class="container section">
+    <h1>Checkout</h1>
+    <div class="notice notice-info" role="note">
+      <strong>Demo checkout:</strong> no payment is collected and no real food will be delivered.
+    </div>
+
+    <div id="empty-cart" class="panel" hidden>
+      <p>Your cart is empty.</p>
+      <a class="btn" href="/menu.html">Browse the menu</a>
+    </div>
+
+    <div class="checkout-grid" id="checkout-content" hidden>
+      <form class="panel" id="checkout-form" novalidate aria-labelledby="details-title">
+        <h2 id="details-title">Delivery details</h2>
+        <div id="form-message" aria-live="assertive"></div>
+
+        <div class="field">
+          <label for="name">Full name</label>
+          <input id="name" name="name" type="text" autocomplete="name" maxlength="80" required aria-describedby="name-error">
+          <p class="field-error" id="name-error"></p>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" maxlength="254" required aria-describedby="email-error">
+            <p class="field-error" id="email-error"></p>
+          </div>
+          <div class="field">
+            <label for="phone">Phone</label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel" maxlength="20" required aria-describedby="phone-error">
+            <p class="field-error" id="phone-error"></p>
+          </div>
+        </div>
+        <div class="field">
+          <label for="address">Delivery address</label>
+          <textarea id="address" name="address" rows="3" autocomplete="street-address" maxlength="250" required aria-describedby="address-error"></textarea>
+          <p class="field-error" id="address-error"></p>
+        </div>
+        <button class="btn btn-block" type="submit" id="place-order">Place Order (no payment)</button>
+        <p class="muted small">We only use your details to book this demo order and email you the confirmation.</p>
+      </form>
+
+      <aside class="panel" aria-labelledby="summary-title">
+        <h2 id="summary-title">Order summary</h2>
+        <ul class="cart-list list-full" id="summary-list"></ul>
+        <div class="totals" id="summary-totals"></div>
+        <p><a href="/menu.html">&larr; Edit cart</a></p>
+      </aside>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="/js/common.js" defer></script>
+  <script src="/js/checkout.js" defer></script>
+</body>
+</html>
