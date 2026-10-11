@@ -1,0 +1,713 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" agent="generate-diagram.js" version="24.7.17" type="device">
+  <diagram id="p1" name="1 End-to-End Architecture">
+    <mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1920" pageHeight="1080" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="p1_0" />
+        <mxCell id="p1_1" parent="p1_0" />
+        <mxCell id="p1_title" value="FoodExpress: from &lt;i&gt;git push&lt;/i&gt; to a running application on Amazon EC2" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=24;fontStyle=1;fontColor=#1F4E79;" vertex="1" parent="p1_1">
+          <mxGeometry x="20" y="12" width="1880" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_subtitle" value="What this repository really contains: GitLab CI/CD → Amazon S3 → AWS CodeDeploy → one EC2 instance. There is no Jenkins, Docker, Amazon ECR, Amazon EKS / Kubernetes, Prometheus or Grafana in the repository." style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=13;fontColor=#444444;" vertex="1" parent="p1_1">
+          <mxGeometry x="20" y="48" width="1880" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_zA" value="A · Developer and GitLab" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;fillColor=#EEF4FB;strokeColor=#1F4E79;strokeWidth=2;verticalAlign=top;align=left;spacingLeft=10;spacingTop=4;fontSize=14;fontStyle=1;fontColor=#1F4E79;" vertex="1" parent="p1_1">
+          <mxGeometry x="20" y="90" width="300" height="700" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_dev" value="&lt;b&gt;Developer&lt;/b&gt;&lt;br&gt;Writes and tests code on a laptop." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p1_zA">
+          <mxGeometry x="20" y="40" width="260" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_ide" value="&lt;b&gt;VS Code + Claude Code&lt;/b&gt;&lt;br&gt;Claude Code is an AI assistant inside the editor. It helps write and review application code, the pipeline file, deploy scripts and documentation.&lt;br&gt;&lt;i&gt;It is not part of the pipeline and does not trigger it.&lt;/i&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p1_zA">
+          <mxGeometry x="20" y="130" width="260" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_git" value="&lt;b&gt;Local Git repository&lt;/b&gt;&lt;br&gt;Default branch: &lt;font face=&quot;Courier New&quot;&gt;main&lt;/font&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;git commit&lt;/font&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;git push origin main&lt;/font&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p1_zA">
+          <mxGeometry x="20" y="320" width="260" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_gitlab" value="&lt;b&gt;GitLab.com project&lt;/b&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;devops_slate/&lt;/font&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;foodexpress-monolithic-nodejs&lt;/font&gt;&lt;br&gt;Stores the source code. Every push starts a pipeline defined in &lt;font face=&quot;Courier New&quot;&gt;.gitlab-ci.yml&lt;/font&gt;." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#C55A11;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p1_zA">
+          <mxGeometry x="20" y="450" width="260" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_mr" value="&lt;b&gt;Branches and merge requests&lt;/b&gt;&lt;br&gt;Push to any branch: &lt;b&gt;test&lt;/b&gt; only. Push to main: all three stages. No merge-request pipeline is configured." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFF8E1;strokeColor=#D6A300;strokeWidth=1;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#4E3B00;" vertex="1" parent="p1_zA">
+          <mxGeometry x="20" y="600" width="260" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_e_dev_ide" value="writes code" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#1F4E79;endArrow=block;endFill=1;fontSize=10;fontColor=#1F4E79;labelBackgroundColor=#FFFFFF;" edge="1" parent="p1_1" source="p1_dev" target="p1_ide">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_e_ide_git" value="commit" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#1F4E79;endArrow=block;endFill=1;fontSize=10;fontColor=#1F4E79;labelBackgroundColor=#FFFFFF;" edge="1" parent="p1_1" source="p1_ide" target="p1_git">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_e_git_gitlab" value="push" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#1F4E79;endArrow=block;endFill=1;fontSize=10;fontColor=#1F4E79;labelBackgroundColor=#FFFFFF;" edge="1" parent="p1_1" source="p1_git" target="p1_gitlab">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_zB" value="B · GitLab CI/CD (.gitlab-ci.yml)" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;fillColor=#FFF4E5;strokeColor=#C55A11;strokeWidth=2;verticalAlign=top;align=left;spacingLeft=10;spacingTop=4;fontSize=14;fontStyle=1;fontColor=#C55A11;" vertex="1" parent="p1_1">
+          <mxGeometry x="340" y="90" width="330" height="700" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_s1" value="&lt;b&gt;① test&lt;/b&gt;&lt;br&gt;Image: &lt;font face=&quot;Courier New&quot;&gt;node:20&lt;/font&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;npm ci&lt;/font&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;npm test&lt;/font&gt; (12 tests)&lt;br&gt;Runs on every branch." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#C55A11;strokeWidth=2;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p1_zB">
+          <mxGeometry x="20" y="40" width="290" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_s2" value="&lt;b&gt;② package&lt;/b&gt;&lt;br&gt;Image: &lt;font face=&quot;Courier New&quot;&gt;node:20&lt;/font&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;git archive&lt;/font&gt; → &lt;font face=&quot;Courier New&quot;&gt;foodexpress.zip&lt;/font&gt;&lt;br&gt;Saved as a job artifact for 1 week.&lt;br&gt;Default branch only." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#C55A11;strokeWidth=2;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p1_zB">
+          <mxGeometry x="20" y="195" width="290" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_s3" value="&lt;b&gt;③ deploy&lt;/b&gt;&lt;br&gt;Image: &lt;font face=&quot;Courier New&quot;&gt;amazon/aws-cli:latest&lt;/font&gt;&lt;br&gt;🔒 Signs in with a GitLab OIDC token. No AWS keys are stored.&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;aws s3 cp&lt;/font&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;aws deploy create-deployment&lt;/font&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;aws deploy wait deployment-successful&lt;/font&gt;&lt;br&gt;Environment: production. One deployment at a time. Default branch only." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#C55A11;strokeWidth=2;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p1_zB">
+          <mxGeometry x="20" y="350" width="290" height="215" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_pfail" value="&lt;b&gt;✖ If any stage fails&lt;/b&gt;&lt;br&gt;The pipeline stops and later stages do not run. No automatic rollback is configured." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FDECEA;strokeColor=#C62828;strokeWidth=2;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#8E1B1B;" vertex="1" parent="p1_zB">
+          <mxGeometry x="20" y="590" width="290" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_e_gitlab_s1" value="push starts pipeline" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#1F4E79;endArrow=block;endFill=1;fontSize=10;fontColor=#1F4E79;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="p1_1" source="p1_gitlab" target="p1_s1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_e_s1_s2" value="tests passed" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#1F4E79;endArrow=block;endFill=1;fontSize=10;fontColor=#1F4E79;labelBackgroundColor=#FFFFFF;" edge="1" parent="p1_1" source="p1_s1" target="p1_s2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_e_s2_s3" value="zip artifact" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#1F4E79;endArrow=block;endFill=1;fontSize=10;fontColor=#1F4E79;labelBackgroundColor=#FFFFFF;" edge="1" parent="p1_1" source="p1_s2" target="p1_s3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_e_s3_fail" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#C62828;endArrow=block;endFill=1;fontSize=10;fontColor=#C62828;labelBackgroundColor=#FFFFFF;" edge="1" parent="p1_1" source="p1_s3" target="p1_pfail">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_aws" value="C · AWS Cloud (region = ${AWS_DEFAULT_REGION})" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=14;fontStyle=1;container=1;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_aws_cloud_alt;strokeColor=#232F3E;fillColor=none;verticalAlign=top;align=left;spacingLeft=30;fontColor=#232F3E;dashed=0;strokeWidth=2;" vertex="1" parent="p1_1">
+          <mxGeometry x="690" y="90" width="890" height="700" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_oidc" value="&lt;b&gt;IAM identity provider&lt;/b&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;gitlab.com&lt;/font&gt; (OpenID Connect)&lt;br&gt;Created by hand, see walkthrough." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;spacingLeft=52;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p1_aws">
+          <mxGeometry x="20" y="45" width="240" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_oidc_icon" value="" style="sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#DD344C;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.identity_and_access_management;" vertex="1" parent="p1_oidc">
+          <mxGeometry x="8" y="8" width="38" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_role" value="&lt;b&gt;🔒 IAM role for the pipeline&lt;/b&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;${AWS_ROLE_ARN}&lt;/font&gt;&lt;br&gt;Trusts only this project and the main branch. May upload the zip and start a deployment." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;spacingLeft=52;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p1_aws">
+          <mxGeometry x="20" y="155" width="240" height="135" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_role_icon" value="" style="sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#DD344C;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.identity_and_access_management;" vertex="1" parent="p1_role">
+          <mxGeometry x="8" y="8" width="38" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_s3b" value="&lt;b&gt;Amazon S3 bucket&lt;/b&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;${S3_BUCKET}&lt;/font&gt;&lt;br&gt;Key: &lt;font face=&quot;Courier New&quot;&gt;foodexpress/&lt;/font&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;&amp;lt;short commit id&amp;gt;.zip&lt;/font&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;spacingLeft=52;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p1_aws">
+          <mxGeometry x="20" y="310" width="240" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_s3b_icon" value="" style="sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#7AA116;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.s3;" vertex="1" parent="p1_s3b">
+          <mxGeometry x="8" y="8" width="38" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_cd" value="&lt;b&gt;AWS CodeDeploy&lt;/b&gt;&lt;br&gt;App:&lt;br&gt;&lt;font face=&quot;Courier New&quot; style=&quot;font-size:10px&quot;&gt;${CODEDEPLOY_APPLICATION}&lt;/font&gt;&lt;br&gt;Group:&lt;br&gt;&lt;font face=&quot;Courier New&quot; style=&quot;font-size:10px&quot;&gt;${CODEDEPLOY_DEPLOYMENT_GROUP}&lt;/font&gt;&lt;br&gt;Finds the server by its tag (documented: App = foodexpress)." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;spacingLeft=52;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p1_aws">
+          <mxGeometry x="20" y="440" width="240" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_cd_icon" value="" style="sketch=0;outlineConnect=0;fontColor=#232F3E;fillColor=#C925D1;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.codedeploy;" vertex="1" parent="p1_cd">
+          <mxGeometry x="8" y="8" width="38" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_svc" value="&lt;b&gt;Other IAM roles (documented)&lt;/b&gt;&lt;br&gt;CodeDeploy service role and EC2 instance role. Not defined as code in the repo." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFF8E1;strokeColor=#D6A300;strokeWidth=1;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#4E3B00;" vertex="1" parent="p1_aws">
+          <mxGeometry x="20" y="610" width="240" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_ec2" value="EC2 instance · Amazon Linux 2023 · single server" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=13;fontStyle=1;container=1;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_ec2_instance_contents;strokeColor=#D86613;fillColor=#FFFBF5;verticalAlign=top;align=left;spacingLeft=30;fontColor=#D86613;dashed=0;strokeWidth=2;" vertex="1" parent="p1_aws">
+          <mxGeometry x="310" y="45" width="565" height="640" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_agent" value="&lt;b&gt;CodeDeploy agent&lt;/b&gt;&lt;br&gt;Installed once by hand. Polls CodeDeploy, downloads the zip from S3 with the instance role, runs &lt;font face=&quot;Courier New&quot;&gt;appspec.yml&lt;/font&gt;." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p1_ec2">
+          <mxGeometry x="15" y="40" width="255" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_hooks" value="&lt;b&gt;appspec.yml lifecycle&lt;/b&gt;&lt;br&gt;&lt;b&gt;Install:&lt;/b&gt; copy files to &lt;font face=&quot;Courier New&quot;&gt;/opt/foodexpress&lt;/font&gt;&lt;br&gt;&lt;b&gt;AfterInstall:&lt;/b&gt; &lt;font face=&quot;Courier New&quot;&gt;deploy/setup-ec2.sh&lt;/font&gt;&lt;br&gt;Node.js 20, &lt;font face=&quot;Courier New&quot;&gt;npm ci --omit=dev&lt;/font&gt;, restart.&lt;br&gt;&lt;b&gt;ValidateService:&lt;/b&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;deploy/validate-service.sh&lt;/font&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p1_ec2">
+          <mxGeometry x="15" y="170" width="255" height="165" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_systemd" value="&lt;b&gt;systemd service: foodexpress&lt;/b&gt;&lt;br&gt;User &lt;font face=&quot;Courier New&quot;&gt;foodexpress&lt;/font&gt;, &lt;font face=&quot;Courier New&quot;&gt;NODE_ENV=production&lt;/font&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;Restart=on-failure&lt;/font&gt;. Starts on boot." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p1_ec2">
+          <mxGeometry x="15" y="355" width="255" height="105" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_env" value="&lt;b&gt;🔒 /opt/foodexpress/.env&lt;/b&gt;&lt;br&gt;PORT and SMTP settings. Never in Git, never in the zip. File mode 600. Deployments keep it." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p1_ec2">
+          <mxGeometry x="15" y="480" width="255" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_logs" value="&lt;b&gt;Logs: journald&lt;/b&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;journalctl -u foodexpress&lt;/font&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p1_ec2">
+          <mxGeometry x="15" y="580" width="255" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_zD" value="D · FoodExpress monolith" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;fillColor=#EAF5EA;strokeColor=#2E7D32;strokeWidth=2;verticalAlign=top;align=left;spacingLeft=10;spacingTop=4;fontSize=14;fontStyle=1;fontColor=#2E7D32;" vertex="1" parent="p1_ec2">
+          <mxGeometry x="285" y="40" width="265" height="400" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_static" value="&lt;b&gt;Website (static files)&lt;/b&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;public/&lt;/font&gt; HTML, CSS, JavaScript" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p1_zD">
+          <mxGeometry x="12" y="32" width="241" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_api" value="&lt;b&gt;JSON API&lt;/b&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;/api/products&lt;/font&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;/api/orders&lt;/font&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p1_zD">
+          <mxGeometry x="12" y="104" width="241" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_health" value="&lt;b&gt;Health check&lt;/b&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;GET /health&lt;/font&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p1_zD">
+          <mxGeometry x="12" y="190" width="241" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_store" value="&lt;b&gt;Data: in memory&lt;/b&gt;&lt;br&gt;Menu and orders. Orders are lost on every restart." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p1_zD">
+          <mxGeometry x="12" y="246" width="241" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_email" value="&lt;b&gt;Email service (Nodemailer)&lt;/b&gt;&lt;br&gt;Sends the order confirmation." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p1_zD">
+          <mxGeometry x="12" y="318" width="241" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_nginx" value="&lt;b&gt;Optional: Nginx reverse proxy&lt;/b&gt;&lt;br&gt;Port 80 → &lt;font face=&quot;Courier New&quot;&gt;127.0.0.1:3000&lt;/font&gt;&lt;br&gt;Manual: &lt;font face=&quot;Courier New&quot;&gt;deploy/nginx_installation.sh&lt;/font&gt;. Not run by the pipeline." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#8A8A8A;strokeWidth=1.5;dashed=1;dashPattern=6 4;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#555555;" vertex="1" parent="p1_ec2">
+          <mxGeometry x="285" y="460" width="265" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_sg" value="&lt;b&gt;Security group (documented)&lt;/b&gt;&lt;br&gt;Inbound TCP 3000, and 80 with Nginx." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFF8E1;strokeColor=#D6A300;strokeWidth=1;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#4E3B00;" vertex="1" parent="p1_ec2">
+          <mxGeometry x="285" y="575" width="265" height="53" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_e_s3_role" value="3a 🔒 OIDC sign-in" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#6A1B9A;endArrow=block;endFill=1;fontSize=10;fontColor=#6A1B9A;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.12;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="p1_1" source="p1_s3" target="p1_role">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_e_oidc_role" value="verifies token" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#6A1B9A;endArrow=block;endFill=1;fontSize=10;fontColor=#6A1B9A;labelBackgroundColor=#FFFFFF;" edge="1" parent="p1_1" source="p1_oidc" target="p1_role">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_e_s3_s3b" value="3b upload zip" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#1F4E79;endArrow=block;endFill=1;fontSize=10;fontColor=#1F4E79;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="p1_1" source="p1_s3" target="p1_s3b">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_e_s3_cd" value="3c start + wait" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#C55A11;endArrow=block;endFill=1;fontSize=10;fontColor=#C55A11;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.88;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="p1_1" source="p1_s3" target="p1_cd">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_e_s3b_agent" value="download zip" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#1F4E79;endArrow=block;endFill=1;fontSize=10;fontColor=#1F4E79;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.3;entryDx=0;entryDy=0;" edge="1" parent="p1_1" source="p1_s3b" target="p1_agent">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="970" y="455" />
+              <mxPoint x="970" y="208" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p1_e_cd_agent" value="deployment instruction" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#C55A11;endArrow=block;endFill=1;fontSize=10;fontColor=#C55A11;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;" edge="1" parent="p1_1" source="p1_cd" target="p1_agent">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="985" y="605" />
+              <mxPoint x="985" y="258" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p1_e_agent_hooks" value="runs" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#C55A11;endArrow=block;endFill=1;fontSize=10;fontColor=#C55A11;labelBackgroundColor=#FFFFFF;" edge="1" parent="p1_1" source="p1_agent" target="p1_hooks">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_e_hooks_systemd" value="restart" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#C55A11;endArrow=block;endFill=1;fontSize=10;fontColor=#C55A11;labelBackgroundColor=#FFFFFF;" edge="1" parent="p1_1" source="p1_hooks" target="p1_systemd">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_e_systemd_app" value="node server.js" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#C55A11;endArrow=block;endFill=1;fontSize=10;fontColor=#C55A11;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.92;entryDx=0;entryDy=0;" edge="1" parent="p1_1" source="p1_systemd" target="p1_zD">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_e_hooks_health" value="health check" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#C55A11;endArrow=block;endFill=1;fontSize=10;fontColor=#C55A11;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="p1_1" source="p1_hooks" target="p1_health">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_users" value="&lt;b&gt;Customer (web browser)&lt;/b&gt;&lt;br&gt;Opens &lt;font face=&quot;Courier New&quot;&gt;http://&amp;lt;server&amp;gt;:3000&lt;/font&gt;&lt;br&gt;Browses the menu and places orders." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p1_1">
+          <mxGeometry x="1620" y="185" width="280" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_smtp" value="&lt;b&gt;SMTP mail server (external)&lt;/b&gt;&lt;br&gt;🔒 Host and login come from &lt;font face=&quot;Courier New&quot;&gt;.env&lt;/font&gt;. Not part of this repository." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p1_1">
+          <mxGeometry x="1620" y="478" width="280" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_zE" value="E · Monitoring" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;fillColor=#F3EEFA;strokeColor=#6A1B9A;strokeWidth=2;verticalAlign=top;align=left;spacingLeft=10;spacingTop=4;fontSize=14;fontStyle=1;fontColor=#6A1B9A;" vertex="1" parent="p1_1">
+          <mxGeometry x="1620" y="600" width="280" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_mon" value="&lt;b&gt;Configured today&lt;/b&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;/health&lt;/font&gt;, journald logs and CodeDeploy events. No metrics." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p1_zE">
+          <mxGeometry x="10" y="32" width="260" height="68" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_prom" value="&lt;b&gt;Prometheus&lt;/b&gt;&lt;br&gt;Proposed. Not in the repo." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#8A8A8A;strokeWidth=1.5;dashed=1;dashPattern=6 4;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#555555;" vertex="1" parent="p1_zE">
+          <mxGeometry x="10" y="110" width="125" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_graf" value="&lt;b&gt;Grafana&lt;/b&gt;&lt;br&gt;Proposed. Not in the repo." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#8A8A8A;strokeWidth=1.5;dashed=1;dashPattern=6 4;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#555555;" vertex="1" parent="p1_zE">
+          <mxGeometry x="145" y="110" width="125" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_e_users_app" value="HTTP :3000" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#2E7D32;endArrow=block;endFill=1;fontSize=10;fontColor=#2E7D32;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.3;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="p1_1" source="p1_users" target="p1_static">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_e_users_nginx" value="HTTP :80 (optional)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#8A8A8A;endArrow=block;endFill=1;fontSize=10;fontColor=#8A8A8A;labelBackgroundColor=#FFFFFF;dashed=1;dashPattern=6 4;exitX=0;exitY=0.8;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="p1_1" source="p1_users" target="p1_nginx">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1594" y="257" />
+              <mxPoint x="1594" y="645" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p1_e_nginx_app" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#8A8A8A;endArrow=block;endFill=1;fontSize=10;fontColor=#8A8A8A;labelBackgroundColor=#FFFFFF;dashed=1;dashPattern=6 4;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="p1_1" source="p1_nginx" target="p1_zD">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_e_email_smtp" value="SMTP" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#1F4E79;endArrow=block;endFill=1;fontSize=10;fontColor=#1F4E79;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="p1_1" source="p1_email" target="p1_smtp">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_e_app_prom" value="proposed" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#8A8A8A;endArrow=block;endFill=1;fontSize=10;fontColor=#8A8A8A;labelBackgroundColor=#FFFFFF;dashed=1;dashPattern=6 4;exitX=1;exitY=0.97;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="p1_1" source="p1_zD" target="p1_prom">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1608" y="563" />
+              <mxPoint x="1608" y="745" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p1_e_prom_graf" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#8A8A8A;endArrow=block;endFill=1;fontSize=10;fontColor=#8A8A8A;labelBackgroundColor=#FFFFFF;dashed=1;dashPattern=6 4;" edge="1" parent="p1_1" source="p1_prom" target="p1_graf">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_legend" value="Legend" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=2;verticalAlign=top;align=left;spacingLeft=10;spacingTop=4;fontSize=14;fontStyle=1;fontColor=#5B7083;" vertex="1" parent="p1_1">
+          <mxGeometry x="20" y="810" width="400" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_lg_flow" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#1F4E79;endArrow=block;endFill=1;fontSize=10;fontColor=#1F4E79;labelBackgroundColor=#FFFFFF;" edge="1" parent="p1_1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="34" y="861" as="sourcePoint" />
+            <mxPoint x="94" y="861" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p1_lg_flow_t" value="Solid blue: configured workflow (files and data)" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p1_legend">
+          <mxGeometry x="84" y="36" width="306" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_lg_control" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#C55A11;endArrow=block;endFill=1;fontSize=10;fontColor=#C55A11;labelBackgroundColor=#FFFFFF;" edge="1" parent="p1_1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="34" y="892" as="sourcePoint" />
+            <mxPoint x="94" y="892" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p1_lg_control_t" value="Solid orange: deployment control path" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p1_legend">
+          <mxGeometry x="84" y="67" width="306" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_lg_traffic" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#2E7D32;endArrow=block;endFill=1;fontSize=10;fontColor=#2E7D32;labelBackgroundColor=#FFFFFF;" edge="1" parent="p1_1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="34" y="923" as="sourcePoint" />
+            <mxPoint x="94" y="923" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p1_lg_traffic_t" value="Solid green: user / application traffic" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p1_legend">
+          <mxGeometry x="84" y="98" width="306" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_lg_auth" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#6A1B9A;endArrow=block;endFill=1;fontSize=10;fontColor=#6A1B9A;labelBackgroundColor=#FFFFFF;" edge="1" parent="p1_1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="34" y="954" as="sourcePoint" />
+            <mxPoint x="94" y="954" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p1_lg_auth_t" value="Solid purple + 🔒: authentication" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p1_legend">
+          <mxGeometry x="84" y="129" width="306" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_lg_fail" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#C62828;endArrow=block;endFill=1;fontSize=10;fontColor=#C62828;labelBackgroundColor=#FFFFFF;" edge="1" parent="p1_1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="34" y="985" as="sourcePoint" />
+            <mxPoint x="94" y="985" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p1_lg_fail_t" value="Red: failure path" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p1_legend">
+          <mxGeometry x="84" y="160" width="306" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_lg_prop" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#8A8A8A;endArrow=block;endFill=1;fontSize=10;fontColor=#8A8A8A;labelBackgroundColor=#FFFFFF;dashed=1;dashPattern=6 4;" edge="1" parent="p1_1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="34" y="1016" as="sourcePoint" />
+            <mxPoint x="94" y="1016" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p1_lg_prop_t" value="Dashed grey: optional or proposed, not configured" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p1_legend">
+          <mxGeometry x="84" y="191" width="306" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_lg_sec" value="🔒 = secret or credential boundary" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#6A1B9A;" vertex="1" parent="p1_legend">
+          <mxGeometry x="14" y="222" width="376" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_k1" value="&lt;b&gt;CI and CD&lt;/b&gt;&lt;br&gt;&lt;b&gt;Continuous Integration&lt;/b&gt; is stages ① and ②: every push is tested and packaged automatically.&lt;br&gt;&lt;b&gt;Continuous Deployment&lt;/b&gt; is stage ③ plus CodeDeploy: a tested package is put on the server with no manual step.&lt;br&gt;Here both run in one GitLab pipeline." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1F4E79;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=12;fontColor=#1F2933;" vertex="1" parent="p1_1">
+          <mxGeometry x="440" y="810" width="355" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_k2" value="&lt;b&gt;Source code and artifact&lt;/b&gt;&lt;br&gt;&lt;b&gt;Source code&lt;/b&gt; lives in GitLab.&lt;br&gt;The &lt;b&gt;artifact&lt;/b&gt; is &lt;font face=&quot;Courier New&quot;&gt;foodexpress.zip&lt;/font&gt;: a snapshot of one commit, stored in S3 under that commit id.&lt;br&gt;Nothing is compiled. Dependencies are installed on the server by &lt;font face=&quot;Courier New&quot;&gt;npm ci&lt;/font&gt;.&lt;br&gt;There is no Docker image in this project." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1F4E79;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=12;fontColor=#1F2933;" vertex="1" parent="p1_1">
+          <mxGeometry x="815" y="810" width="355" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_k3" value="&lt;b&gt;Control path and user traffic&lt;/b&gt;&lt;br&gt;&lt;b&gt;Orange&lt;/b&gt; arrows tell the server what to deploy: GitLab → CodeDeploy → agent → scripts.&lt;br&gt;&lt;b&gt;Green&lt;/b&gt; arrows are customers using the site on port 3000.&lt;br&gt;They never share a path. Customers cannot reach CodeDeploy, and the pipeline never logs in to the server." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1F4E79;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=12;fontColor=#1F2933;" vertex="1" parent="p1_1">
+          <mxGeometry x="1190" y="810" width="355" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_k4" value="&lt;b&gt;Not in this repository&lt;/b&gt;&lt;br&gt;Jenkins, Dockerfile, Amazon ECR, Amazon EKS, Kubernetes manifests, Terraform or CloudFormation, Prometheus, Grafana.&lt;br&gt;AWS resources are created by hand from &lt;font face=&quot;Courier New&quot;&gt;docs/CodeDeploy-Setup-Walkthrough.md&lt;/font&gt;." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFF8E1;strokeColor=#D6A300;strokeWidth=1;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#4E3B00;" vertex="1" parent="p1_1">
+          <mxGeometry x="1565" y="810" width="335" height="250" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="p2" name="2 CI-CD Pipeline Deep Dive">
+    <mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1920" pageHeight="1080" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="p2_0" />
+        <mxCell id="p2_1" parent="p2_0" />
+        <mxCell id="p2_title" value="CI/CD pipeline deep dive: what each stage really runs" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=24;fontStyle=1;fontColor=#1F4E79;" vertex="1" parent="p2_1">
+          <mxGeometry x="20" y="12" width="1880" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_subtitle" value="Stage names, images and commands are copied from .gitlab-ci.yml, appspec.yml and the deploy/ scripts." style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=13;fontColor=#444444;" vertex="1" parent="p2_1">
+          <mxGeometry x="20" y="50" width="1880" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_ci_bar" value="Continuous Integration (stages 1 and 2)" style="rounded=1;arcSize=30;whiteSpace=wrap;html=1;fillColor=#1F4E79;strokeColor=none;fontSize=11;fontStyle=1;fontColor=#FFFFFF;align=center;verticalAlign=middle;" vertex="1" parent="p2_1">
+          <mxGeometry x="250" y="74" width="650" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_cd_bar" value="Continuous Deployment (stage 3 and AWS CodeDeploy)" style="rounded=1;arcSize=30;whiteSpace=wrap;html=1;fillColor=#C55A11;strokeColor=none;fontSize=11;fontStyle=1;fontColor=#FFFFFF;align=center;verticalAlign=middle;" vertex="1" parent="p2_1">
+          <mxGeometry x="930" y="74" width="970" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_f_push" value="&lt;b&gt;Push to GitLab&lt;/b&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;git push origin main&lt;/font&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p2_1">
+          <mxGeometry x="20" y="108" width="190" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_f_test" value="&lt;b&gt;① test&lt;/b&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;npm ci&lt;/font&gt;, &lt;font face=&quot;Courier New&quot;&gt;npm test&lt;/font&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#C55A11;strokeWidth=2;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p2_1">
+          <mxGeometry x="250" y="108" width="190" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_d1" value="Tests pass?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF8E1;strokeColor=#D6A300;strokeWidth=2;fontSize=11;fontStyle=1;fontColor=#4E3B00;" vertex="1" parent="p2_1">
+          <mxGeometry x="480" y="98" width="140" height="106" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_f_pkg" value="&lt;b&gt;② package&lt;/b&gt;&lt;br&gt;Build &lt;font face=&quot;Courier New&quot;&gt;foodexpress.zip&lt;/font&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#C55A11;strokeWidth=2;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p2_1">
+          <mxGeometry x="660" y="108" width="200" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_f_dep" value="&lt;b&gt;③ deploy&lt;/b&gt;&lt;br&gt;Upload zip, start CodeDeploy, wait for the result" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#C55A11;strokeWidth=2;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p2_1">
+          <mxGeometry x="930" y="108" width="220" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_f_cd" value="&lt;b&gt;CodeDeploy on EC2&lt;/b&gt;&lt;br&gt;Install, set up, restart, health check" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p2_1">
+          <mxGeometry x="1190" y="108" width="220" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_d2" value="Deployment&lt;br&gt;Succeeded?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF8E1;strokeColor=#D6A300;strokeWidth=2;fontSize=11;fontStyle=1;fontColor=#4E3B00;" vertex="1" parent="p2_1">
+          <mxGeometry x="1450" y="98" width="160" height="106" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_f_ok" value="&lt;b&gt;✔ Pipeline green&lt;/b&gt;&lt;br&gt;The new version is live on the server." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#2E7D32;strokeWidth=2;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1B5E20;" vertex="1" parent="p2_1">
+          <mxGeometry x="1660" y="108" width="240" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_f_r1" value="&lt;b&gt;✖ Pipeline stops&lt;/b&gt;&lt;br&gt;package and deploy do not run. The server is unchanged." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FDECEA;strokeColor=#C62828;strokeWidth=2;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#8E1B1B;" vertex="1" parent="p2_1">
+          <mxGeometry x="440" y="240" width="220" height="84" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_f_r2" value="&lt;b&gt;✖ deploy job fails&lt;/b&gt;&lt;br&gt;No automatic rollback is configured. Read the CodeDeploy events, fix, push again." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FDECEA;strokeColor=#C62828;strokeWidth=2;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#8E1B1B;" vertex="1" parent="p2_1">
+          <mxGeometry x="1400" y="240" width="260" height="84" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_e1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#1F4E79;endArrow=block;endFill=1;fontSize=10;fontColor=#1F4E79;labelBackgroundColor=#FFFFFF;" edge="1" parent="p2_1" source="p2_f_push" target="p2_f_test">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_e2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#1F4E79;endArrow=block;endFill=1;fontSize=10;fontColor=#1F4E79;labelBackgroundColor=#FFFFFF;" edge="1" parent="p2_1" source="p2_f_test" target="p2_d1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_e3" value="yes" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#1F4E79;endArrow=block;endFill=1;fontSize=10;fontColor=#1F4E79;labelBackgroundColor=#FFFFFF;" edge="1" parent="p2_1" source="p2_d1" target="p2_f_pkg">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_e4" value="no" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#C62828;endArrow=block;endFill=1;fontSize=10;fontColor=#C62828;labelBackgroundColor=#FFFFFF;" edge="1" parent="p2_1" source="p2_d1" target="p2_f_r1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_e5" value="artifact" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#1F4E79;endArrow=block;endFill=1;fontSize=10;fontColor=#1F4E79;labelBackgroundColor=#FFFFFF;" edge="1" parent="p2_1" source="p2_f_pkg" target="p2_f_dep">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_e6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#C55A11;endArrow=block;endFill=1;fontSize=10;fontColor=#C55A11;labelBackgroundColor=#FFFFFF;" edge="1" parent="p2_1" source="p2_f_dep" target="p2_f_cd">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_e7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#C55A11;endArrow=block;endFill=1;fontSize=10;fontColor=#C55A11;labelBackgroundColor=#FFFFFF;" edge="1" parent="p2_1" source="p2_f_cd" target="p2_d2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_e8" value="yes" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#1F4E79;endArrow=block;endFill=1;fontSize=10;fontColor=#1F4E79;labelBackgroundColor=#FFFFFF;" edge="1" parent="p2_1" source="p2_d2" target="p2_f_ok">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_e9" value="no" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#C62828;endArrow=block;endFill=1;fontSize=10;fontColor=#C62828;labelBackgroundColor=#FFFFFF;" edge="1" parent="p2_1" source="p2_d2" target="p2_f_r2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_dt" value="① test · node:20 · every branch" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;fillColor=#FFF4E5;strokeColor=#C55A11;strokeWidth=2;verticalAlign=top;align=left;spacingLeft=10;spacingTop=4;fontSize=14;fontStyle=1;fontColor=#C55A11;" vertex="1" parent="p2_1">
+          <mxGeometry x="20" y="345" width="400" height="365" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_dt1" value="&lt;b&gt;1.1 Checkout&lt;/b&gt;&lt;br&gt;GitLab clones the commit into the job container (default behaviour)." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p2_dt">
+          <mxGeometry x="15" y="35" width="370" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_dt2" value="&lt;b&gt;1.2 Install dependencies&lt;/b&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;npm ci&lt;/font&gt; installs exactly what &lt;font face=&quot;Courier New&quot;&gt;package-lock.json&lt;/font&gt; lists." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p2_dt">
+          <mxGeometry x="15" y="107" width="370" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_dt3" value="&lt;b&gt;1.3 Run the tests&lt;/b&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;npm test&lt;/font&gt; runs &lt;font face=&quot;Courier New&quot;&gt;node --test&lt;/font&gt;.&lt;br&gt;11 tests in &lt;font face=&quot;Courier New&quot;&gt;test/api.test.js&lt;/font&gt;&lt;br&gt;1 test in &lt;font face=&quot;Courier New&quot;&gt;test/email-failure.test.js&lt;/font&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p2_dt">
+          <mxGeometry x="15" y="179" width="370" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_dt4" value="&lt;b&gt;Not configured&lt;/b&gt;&lt;br&gt;No lint, code-quality or security-scan job exists." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFF8E1;strokeColor=#D6A300;strokeWidth=1;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#4E3B00;" vertex="1" parent="p2_dt">
+          <mxGeometry x="15" y="285" width="370" height="66" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_dte1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#1F4E79;endArrow=block;endFill=1;fontSize=10;fontColor=#1F4E79;labelBackgroundColor=#FFFFFF;" edge="1" parent="p2_1" source="p2_dt1" target="p2_dt2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_dte2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#1F4E79;endArrow=block;endFill=1;fontSize=10;fontColor=#1F4E79;labelBackgroundColor=#FFFFFF;" edge="1" parent="p2_1" source="p2_dt2" target="p2_dt3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_dp" value="② package · node:20 · default branch" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;fillColor=#FFF4E5;strokeColor=#C55A11;strokeWidth=2;verticalAlign=top;align=left;spacingLeft=10;spacingTop=4;fontSize=14;fontStyle=1;fontColor=#C55A11;" vertex="1" parent="p2_1">
+          <mxGeometry x="440" y="345" width="400" height="365" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_dp1" value="&lt;b&gt;2.1 Build the zip&lt;/b&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;git archive --format=zip&lt;/font&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;  -o foodexpress.zip HEAD&lt;/font&gt;&lt;br&gt;Only committed files. No .git, node_modules or .env." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p2_dp">
+          <mxGeometry x="15" y="35" width="370" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_dp2" value="&lt;b&gt;2.2 Keep it as a job artifact&lt;/b&gt;&lt;br&gt;Path: &lt;font face=&quot;Courier New&quot;&gt;foodexpress.zip&lt;/font&gt;&lt;br&gt;Expires in 1 week. Passed to the deploy job." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p2_dp">
+          <mxGeometry x="15" y="141" width="370" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_dp3" value="&lt;b&gt;What is in the zip&lt;/b&gt;&lt;br&gt;The whole repository at that commit: app code, &lt;font face=&quot;Courier New&quot;&gt;appspec.yml&lt;/font&gt;, &lt;font face=&quot;Courier New&quot;&gt;deploy/&lt;/font&gt; scripts, docs and tests. Nothing is compiled." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFF8E1;strokeColor=#D6A300;strokeWidth=1;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#4E3B00;" vertex="1" parent="p2_dp">
+          <mxGeometry x="15" y="231" width="370" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_dpe1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#1F4E79;endArrow=block;endFill=1;fontSize=10;fontColor=#1F4E79;labelBackgroundColor=#FFFFFF;" edge="1" parent="p2_1" source="p2_dp1" target="p2_dp2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_dd" value="③ deploy · amazon/aws-cli:latest · default branch" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;fillColor=#FFF4E5;strokeColor=#C55A11;strokeWidth=2;verticalAlign=top;align=left;spacingLeft=10;spacingTop=4;fontSize=14;fontStyle=1;fontColor=#C55A11;" vertex="1" parent="p2_1">
+          <mxGeometry x="860" y="345" width="500" height="365" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_dd1" value="&lt;b&gt;3.1 🔒 Sign in to AWS&lt;/b&gt;&lt;br&gt;GitLab issues &lt;font face=&quot;Courier New&quot;&gt;GITLAB_OIDC_TOKEN&lt;/font&gt; (aud https://gitlab.com).&lt;br&gt;The AWS CLI swaps it for temporary credentials of &lt;font face=&quot;Courier New&quot;&gt;${AWS_ROLE_ARN}&lt;/font&gt;." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p2_dd">
+          <mxGeometry x="15" y="35" width="470" height="82" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_dd2" value="&lt;b&gt;3.2 Upload the zip&lt;/b&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;aws s3 cp foodexpress.zip&lt;/font&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;s3://$S3_BUCKET/foodexpress/$CI_COMMIT_SHORT_SHA.zip&lt;/font&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p2_dd">
+          <mxGeometry x="15" y="127" width="470" height="66" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_dd3" value="&lt;b&gt;3.3 Start the deployment&lt;/b&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;aws deploy create-deployment&lt;/font&gt; with the application,&lt;br&gt;the deployment group and the S3 location of the zip." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p2_dd">
+          <mxGeometry x="15" y="203" width="470" height="66" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_dd4" value="&lt;b&gt;3.4 Wait for the result&lt;/b&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;aws deploy wait deployment-successful&lt;/font&gt;&lt;br&gt;The job turns red if CodeDeploy reports a failure." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p2_dd">
+          <mxGeometry x="15" y="279" width="470" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_dde1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#1F4E79;endArrow=block;endFill=1;fontSize=10;fontColor=#1F4E79;labelBackgroundColor=#FFFFFF;" edge="1" parent="p2_1" source="p2_dd1" target="p2_dd2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_dde2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#1F4E79;endArrow=block;endFill=1;fontSize=10;fontColor=#1F4E79;labelBackgroundColor=#FFFFFF;" edge="1" parent="p2_1" source="p2_dd2" target="p2_dd3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_dde3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#C55A11;endArrow=block;endFill=1;fontSize=10;fontColor=#C55A11;labelBackgroundColor=#FFFFFF;" edge="1" parent="p2_1" source="p2_dd3" target="p2_dd4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_dc" value="AWS CodeDeploy on EC2 · appspec.yml" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;fillColor=#FFFBF5;strokeColor=#D86613;strokeWidth=2;verticalAlign=top;align=left;spacingLeft=10;spacingTop=4;fontSize=14;fontStyle=1;fontColor=#D86613;" vertex="1" parent="p2_1">
+          <mxGeometry x="1380" y="345" width="520" height="365" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_dc1" value="&lt;b&gt;4 DownloadBundle&lt;/b&gt;&lt;br&gt;The agent downloads the zip from S3." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p2_dc">
+          <mxGeometry x="15" y="35" width="490" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_dc2" value="&lt;b&gt;5 Install&lt;/b&gt;&lt;br&gt;Files are copied to &lt;font face=&quot;Courier New&quot;&gt;/opt/foodexpress&lt;/font&gt;.&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;file_exists_behavior: OVERWRITE&lt;/font&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p2_dc">
+          <mxGeometry x="15" y="93" width="490" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_dc3" value="&lt;b&gt;6 AfterInstall · deploy/setup-ec2.sh · root · timeout 600 s&lt;/b&gt;&lt;br&gt;Installs Node.js 20 if missing. Creates the user &lt;font face=&quot;Courier New&quot;&gt;foodexpress&lt;/font&gt;.&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;npm ci --omit=dev&lt;/font&gt;. Creates &lt;font face=&quot;Courier New&quot;&gt;.env&lt;/font&gt; only if there is none.&lt;br&gt;Writes the systemd unit, then &lt;font face=&quot;Courier New&quot;&gt;systemctl restart foodexpress&lt;/font&gt;." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p2_dc">
+          <mxGeometry x="15" y="165" width="490" height="112" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_dc4" value="&lt;b&gt;7 ValidateService · deploy/validate-service.sh · timeout 60 s&lt;/b&gt;&lt;br&gt;Calls &lt;font face=&quot;Courier New&quot;&gt;http://127.0.0.1:$PORT/health&lt;/font&gt; up to 30 times, 1 s apart.&lt;br&gt;Exit code 1 fails the deployment." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p2_dc">
+          <mxGeometry x="15" y="287" width="490" height="66" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_dce1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#C55A11;endArrow=block;endFill=1;fontSize=10;fontColor=#C55A11;labelBackgroundColor=#FFFFFF;" edge="1" parent="p2_1" source="p2_dc1" target="p2_dc2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_dce2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#C55A11;endArrow=block;endFill=1;fontSize=10;fontColor=#C55A11;labelBackgroundColor=#FFFFFF;" edge="1" parent="p2_1" source="p2_dc2" target="p2_dc3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_dce3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#C55A11;endArrow=block;endFill=1;fontSize=10;fontColor=#C55A11;labelBackgroundColor=#FFFFFF;" edge="1" parent="p2_1" source="p2_dc3" target="p2_dc4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_vars" value="&lt;b&gt;🔒 GitLab CI/CD variables (Settings &gt; CI/CD &gt; Variables)&lt;/b&gt;&lt;br&gt;The pipeline file holds no account details. It reads five variables. Values are set in GitLab and are not in the repository.&lt;br&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;AWS_ROLE_ARN&lt;/font&gt;: IAM role the deploy job assumes&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;AWS_DEFAULT_REGION&lt;/font&gt;: AWS region for S3 and CodeDeploy&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;S3_BUCKET&lt;/font&gt;: bucket that stores the zips&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;CODEDEPLOY_APPLICATION&lt;/font&gt;: CodeDeploy application name&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;CODEDEPLOY_DEPLOYMENT_GROUP&lt;/font&gt;: CodeDeploy deployment group name&lt;br&gt;&lt;br&gt;Set inside the job: &lt;font face=&quot;Courier New&quot;&gt;S3_KEY&lt;/font&gt;, &lt;font face=&quot;Courier New&quot;&gt;AWS_WEB_IDENTITY_TOKEN_FILE&lt;/font&gt;, &lt;font face=&quot;Courier New&quot;&gt;AWS_ROLE_SESSION_NAME&lt;/font&gt;.&lt;br&gt;No AWS access keys are used anywhere." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#6A1B9A;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=12;fontColor=#1F2933;" vertex="1" parent="p2_1">
+          <mxGeometry x="20" y="730" width="620" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_rules" value="&lt;b&gt;Which push runs which stage&lt;/b&gt;&lt;br&gt;&lt;b&gt;Push to main (default branch):&lt;/b&gt;&lt;br&gt;test → package → deploy&lt;br&gt;&lt;br&gt;&lt;b&gt;Push to any other branch:&lt;/b&gt;&lt;br&gt;test only&lt;br&gt;&lt;br&gt;&lt;b&gt;Merge requests:&lt;/b&gt;&lt;br&gt;No merge-request pipeline is configured.&lt;br&gt;&lt;br&gt;&lt;b&gt;Trigger:&lt;/b&gt; a push. No webhook, schedule or manual gate is configured.&lt;br&gt;&lt;br&gt;&lt;b&gt;Concurrency:&lt;/b&gt; &lt;font face=&quot;Courier New&quot;&gt;resource_group: production&lt;/font&gt; lets only one deploy job run at a time." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#C55A11;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=12;fontColor=#1F2933;" vertex="1" parent="p2_1">
+          <mxGeometry x="660" y="730" width="420" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_where" value="&lt;b&gt;Where each action runs&lt;/b&gt;&lt;br&gt;&lt;b&gt;GitLab runner&lt;/b&gt; (job containers): checkout, tests, zip, AWS CLI calls. The runner itself is not defined in the repo; GitLab.com shared runners are assumed.&lt;br&gt;&lt;br&gt;&lt;b&gt;AWS&lt;/b&gt;: S3 stores the zip. CodeDeploy tracks the deployment.&lt;br&gt;&lt;br&gt;&lt;b&gt;EC2 instance&lt;/b&gt;: the CodeDeploy agent copies the files and runs the two scripts as root.&lt;br&gt;&lt;br&gt;The pipeline never opens an SSH session to the server." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1F4E79;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=12;fontColor=#1F2933;" vertex="1" parent="p2_1">
+          <mxGeometry x="1100" y="730" width="420" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_legend" value="Legend" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=2;verticalAlign=top;align=left;spacingLeft=10;spacingTop=4;fontSize=14;fontStyle=1;fontColor=#5B7083;" vertex="1" parent="p2_1">
+          <mxGeometry x="1540" y="730" width="360" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_lg_flow" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#1F4E79;endArrow=block;endFill=1;fontSize=10;fontColor=#1F4E79;labelBackgroundColor=#FFFFFF;" edge="1" parent="p2_1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1554" y="781" as="sourcePoint" />
+            <mxPoint x="1614" y="781" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p2_lg_flow_t" value="Solid blue: configured workflow (files and data)" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p2_legend">
+          <mxGeometry x="84" y="36" width="266" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_lg_control" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#C55A11;endArrow=block;endFill=1;fontSize=10;fontColor=#C55A11;labelBackgroundColor=#FFFFFF;" edge="1" parent="p2_1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1554" y="812" as="sourcePoint" />
+            <mxPoint x="1614" y="812" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p2_lg_control_t" value="Solid orange: deployment control path" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p2_legend">
+          <mxGeometry x="84" y="67" width="266" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_lg_traffic" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#2E7D32;endArrow=block;endFill=1;fontSize=10;fontColor=#2E7D32;labelBackgroundColor=#FFFFFF;" edge="1" parent="p2_1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1554" y="843" as="sourcePoint" />
+            <mxPoint x="1614" y="843" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p2_lg_traffic_t" value="Solid green: user / application traffic" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p2_legend">
+          <mxGeometry x="84" y="98" width="266" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_lg_auth" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#6A1B9A;endArrow=block;endFill=1;fontSize=10;fontColor=#6A1B9A;labelBackgroundColor=#FFFFFF;" edge="1" parent="p2_1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1554" y="874" as="sourcePoint" />
+            <mxPoint x="1614" y="874" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p2_lg_auth_t" value="Solid purple + 🔒: authentication" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p2_legend">
+          <mxGeometry x="84" y="129" width="266" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_lg_fail" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#C62828;endArrow=block;endFill=1;fontSize=10;fontColor=#C62828;labelBackgroundColor=#FFFFFF;" edge="1" parent="p2_1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1554" y="905" as="sourcePoint" />
+            <mxPoint x="1614" y="905" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p2_lg_fail_t" value="Red: failure path" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p2_legend">
+          <mxGeometry x="84" y="160" width="266" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_lg_prop" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#8A8A8A;endArrow=block;endFill=1;fontSize=10;fontColor=#8A8A8A;labelBackgroundColor=#FFFFFF;dashed=1;dashPattern=6 4;" edge="1" parent="p2_1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1554" y="936" as="sourcePoint" />
+            <mxPoint x="1614" y="936" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p2_lg_prop_t" value="Dashed grey: optional or proposed, not configured" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p2_legend">
+          <mxGeometry x="84" y="191" width="266" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_lg_sec" value="🔒 = secret or credential boundary" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#6A1B9A;" vertex="1" parent="p2_legend">
+          <mxGeometry x="14" y="222" width="336" height="28" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="p3" name="3 EC2 Runtime and Monitoring">
+    <mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1920" pageHeight="1080" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="p3_0" />
+        <mxCell id="p3_1" parent="p3_0" />
+        <mxCell id="p3_title" value="Runtime on the EC2 instance, application traffic and monitoring" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=24;fontStyle=1;fontColor=#1F4E79;" vertex="1" parent="p3_1">
+          <mxGeometry x="20" y="12" width="1880" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_subtitle" value="This repository has no Kubernetes. The application is one Node.js process managed by systemd on a single EC2 instance. Kubernetes objects such as Pods, Deployments and Services do not exist here." style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=13;fontColor=#444444;" vertex="1" parent="p3_1">
+          <mxGeometry x="20" y="50" width="1880" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_users" value="&lt;b&gt;Customer (web browser)&lt;/b&gt;&lt;br&gt;Loads pages and calls the JSON API." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p3_1">
+          <mxGeometry x="20" y="105" width="230" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_unsplash" value="&lt;b&gt;images.unsplash.com&lt;/b&gt;&lt;br&gt;The browser loads menu photos from here. Allowed by the Content-Security-Policy." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p3_1">
+          <mxGeometry x="20" y="330" width="230" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_e_users_unsplash" value="photos" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#2E7D32;endArrow=block;endFill=1;fontSize=10;fontColor=#2E7D32;labelBackgroundColor=#FFFFFF;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="p3_1" source="p3_users" target="p3_unsplash">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_ec2" value="EC2 instance · Amazon Linux 2023" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=13;fontStyle=1;container=1;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_ec2_instance_contents;strokeColor=#D86613;fillColor=#FFFBF5;verticalAlign=top;align=left;spacingLeft=30;fontColor=#D86613;dashed=0;strokeWidth=2;" vertex="1" parent="p3_1">
+          <mxGeometry x="290" y="90" width="1000" height="620" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_nginx" value="&lt;b&gt;Optional: Nginx&lt;/b&gt;&lt;br&gt;Port 80 → &lt;font face=&quot;Courier New&quot;&gt;127.0.0.1:3000&lt;/font&gt;&lt;br&gt;Installed by hand, not by the pipeline." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#8A8A8A;strokeWidth=1.5;dashed=1;dashPattern=6 4;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#555555;" vertex="1" parent="p3_ec2">
+          <mxGeometry x="20" y="110" width="200" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_systemd" value="&lt;b&gt;systemd: foodexpress&lt;/b&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;ExecStart node server.js&lt;/font&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;Restart=on-failure&lt;/font&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;RestartSec=5&lt;/font&gt;&lt;br&gt;Starts on boot. Hardened: NoNewPrivileges, PrivateTmp, ProtectSystem=full." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p3_ec2">
+          <mxGeometry x="20" y="245" width="200" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_env" value="&lt;b&gt;🔒 .env file&lt;/b&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;/opt/foodexpress/.env&lt;/font&gt;&lt;br&gt;PORT, NODE_ENV, TRUST_PROXY, SMTP_*, EMAIL_FROM. Mode 600." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p3_ec2">
+          <mxGeometry x="20" y="415" width="200" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_logs" value="&lt;b&gt;journald&lt;/b&gt;&lt;br&gt;Process output (stdout), stored by systemd." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p3_ec2">
+          <mxGeometry x="20" y="535" width="200" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_proc" value="Node.js process · node server.js · port 3000 · user foodexpress" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;fillColor=#EAF5EA;strokeColor=#2E7D32;strokeWidth=2;verticalAlign=top;align=left;spacingLeft=10;spacingTop=4;fontSize=14;fontStyle=1;fontColor=#2E7D32;" vertex="1" parent="p3_ec2">
+          <mxGeometry x="250" y="45" width="730" height="555" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_mw" value="&lt;b&gt;Express middleware&lt;/b&gt;&lt;br&gt;Helmet security headers with a Content-Security-Policy (HSTS in production). JSON body limit &lt;font face=&quot;Courier New&quot;&gt;10kb&lt;/font&gt;. &lt;font face=&quot;Courier New&quot;&gt;trust proxy&lt;/font&gt; from TRUST_PROXY." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p3_proc">
+          <mxGeometry x="15" y="35" width="700" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_static" value="&lt;b&gt;Website: public/&lt;/b&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;index.html&lt;/font&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;menu.html&lt;/font&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;checkout.html&lt;/font&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;orders.html&lt;/font&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;order-success.html&lt;/font&gt;&lt;br&gt;plus CSS and JavaScript" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p3_proc">
+          <mxGeometry x="15" y="110" width="220" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_api" value="&lt;b&gt;JSON API: routes/&lt;/b&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;GET  /api/products&lt;/font&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;GET  /api/products/:id&lt;/font&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;POST /api/orders&lt;/font&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;GET  /api/orders/:id&lt;/font&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;POST /api/orders/:id/&lt;/font&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;     resend-email&lt;/font&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p3_proc">
+          <mxGeometry x="250" y="110" width="235" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_health" value="&lt;b&gt;GET /health&lt;/b&gt;&lt;br&gt;Returns JSON:&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;status&lt;/font&gt;, &lt;font face=&quot;Courier New&quot;&gt;uptimeSeconds&lt;/font&gt;,&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;timestamp&lt;/font&gt;, &lt;font face=&quot;Courier New&quot;&gt;environment&lt;/font&gt;,&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;emailConfigured&lt;/font&gt;&lt;br&gt;Used by ValidateService." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p3_proc">
+          <mxGeometry x="500" y="110" width="215" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_services" value="&lt;b&gt;Business logic: services/&lt;/b&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;orderService&lt;/font&gt;: creates and prices orders&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;validation&lt;/font&gt;: checks every field&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;emailService&lt;/font&gt;: builds and sends the confirmation email with Nodemailer" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p3_proc">
+          <mxGeometry x="15" y="275" width="340" height="125" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_data" value="&lt;b&gt;Data: data/ (in memory, no database)&lt;/b&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;products&lt;/font&gt;: the menu&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;orderStore&lt;/font&gt;: a Map, at most 1000 orders&lt;br&gt;&lt;b&gt;All orders are lost when the process restarts, including on every deployment.&lt;/b&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p3_proc">
+          <mxGeometry x="370" y="275" width="345" height="125" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_limits" value="&lt;b&gt;Built-in protection (per client IP, per minute)&lt;/b&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;POST /api/orders&lt;/font&gt;: 60, or RATE_LIMIT_ORDERS_PER_MIN&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;GET /api/orders/:id&lt;/font&gt;: 60     &lt;font face=&quot;Courier New&quot;&gt;POST .../resend-email&lt;/font&gt;: 10&lt;br&gt;An order has at most 20 lines and 10 of each item. At most 5 email attempts per order, with a 30 s wait between resends.&lt;br&gt;Errors are returned as JSON. Stack traces stay in the server log." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p3_proc">
+          <mxGeometry x="15" y="415" width="700" height="125" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_smtp" value="&lt;b&gt;SMTP mail server (external)&lt;/b&gt;&lt;br&gt;🔒 SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS are read from &lt;font face=&quot;Courier New&quot;&gt;.env&lt;/font&gt;." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p3_1">
+          <mxGeometry x="1320" y="360" width="270" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_deployfx" value="&lt;b&gt;What a deployment does to this runtime&lt;/b&gt;&lt;br&gt;1. The CodeDeploy agent replaces the files in &lt;font face=&quot;Courier New&quot;&gt;/opt/foodexpress&lt;/font&gt;.&lt;br&gt;2. &lt;font face=&quot;Courier New&quot;&gt;setup-ec2.sh&lt;/font&gt; runs &lt;font face=&quot;Courier New&quot;&gt;npm ci --omit=dev&lt;/font&gt; and restarts the service.&lt;br&gt;3. The site is unavailable for a few seconds while the process restarts.&lt;br&gt;4. In-memory orders are gone.&lt;br&gt;5. &lt;font face=&quot;Courier New&quot;&gt;validate-service.sh&lt;/font&gt; calls &lt;font face=&quot;Courier New&quot;&gt;/health&lt;/font&gt;. No answer means the deployment is marked Failed.&lt;br&gt;&lt;br&gt;&lt;b&gt;Compared with Kubernetes:&lt;/b&gt; there is no rolling update, no replica and no automatic rollback. One process, one server." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D86613;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=12;fontColor=#1F2933;" vertex="1" parent="p3_1">
+          <mxGeometry x="1320" y="90" width="580" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_concepts" value="&lt;b&gt;Three paths to keep apart&lt;/b&gt;&lt;br&gt;&lt;b&gt;Application traffic (green):&lt;/b&gt; browser → port 3000 → Express.&lt;br&gt;&lt;b&gt;Deployment control (orange):&lt;/b&gt; CodeDeploy → agent → scripts → systemd. See page 2.&lt;br&gt;&lt;b&gt;Monitoring (page bottom):&lt;/b&gt; today a person reads the health endpoint and the logs. Nothing collects metrics.&lt;br&gt;&lt;br&gt;&lt;b&gt;Metrics collection&lt;/b&gt; means a tool pulls numbers on a schedule and stores them. &lt;b&gt;Dashboards&lt;/b&gt; only draw what was stored. Neither exists here yet." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1F4E79;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=12;fontColor=#1F2933;" vertex="1" parent="p3_1">
+          <mxGeometry x="1320" y="490" width="580" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_e_users_proc" value="HTTP :3000" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#2E7D32;endArrow=block;endFill=1;fontSize=10;fontColor=#2E7D32;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.027;entryDx=0;entryDy=0;" edge="1" parent="p3_1" source="p3_users" target="p3_proc">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_e_users_nginx" value="HTTP :80 (optional)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#8A8A8A;endArrow=block;endFill=1;fontSize=10;fontColor=#8A8A8A;labelBackgroundColor=#FFFFFF;dashed=1;dashPattern=6 4;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="p3_1" source="p3_users" target="p3_nginx">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_e_nginx_proc" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#8A8A8A;endArrow=block;endFill=1;fontSize=10;fontColor=#8A8A8A;labelBackgroundColor=#FFFFFF;dashed=1;dashPattern=6 4;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.216;entryDx=0;entryDy=0;" edge="1" parent="p3_1" source="p3_nginx" target="p3_proc">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_e_systemd_proc" value="starts, restarts" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#C55A11;endArrow=block;endFill=1;fontSize=10;fontColor=#C55A11;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="p3_1" source="p3_systemd" target="p3_proc">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_e_env_proc" value="read at start" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#1F4E79;endArrow=block;endFill=1;fontSize=10;fontColor=#1F4E79;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.703;entryDx=0;entryDy=0;" edge="1" parent="p3_1" source="p3_env" target="p3_proc">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_e_proc_logs" value="stdout" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#1F4E79;endArrow=block;endFill=1;fontSize=10;fontColor=#1F4E79;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.932;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="p3_1" source="p3_proc" target="p3_logs">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_e_proc_smtp" value="🔒 SMTP" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#1F4E79;endArrow=block;endFill=1;fontSize=10;fontColor=#1F4E79;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.495;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="p3_1" source="p3_proc" target="p3_smtp">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_zE" value="E · Monitoring and observability" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;fillColor=#F3EEFA;strokeColor=#6A1B9A;strokeWidth=2;verticalAlign=top;align=left;spacingLeft=10;spacingTop=4;fontSize=14;fontStyle=1;fontColor=#6A1B9A;" vertex="1" parent="p3_1">
+          <mxGeometry x="20" y="730" width="1270" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_m1" value="&lt;b&gt;Configured: health endpoint&lt;/b&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;curl http://127.0.0.1:3000/health&lt;/font&gt;&lt;br&gt;Checked automatically once per deployment by ValidateService. Nothing checks it between deployments." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p3_zE">
+          <mxGeometry x="15" y="35" width="300" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_m2" value="&lt;b&gt;Configured: logs&lt;/b&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;journalctl -u foodexpress&lt;/font&gt;&lt;br&gt;CodeDeploy agent log:&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;/var/log/aws/codedeploy-agent/&lt;/font&gt;&lt;br&gt;CodeDeploy console: lifecycle events of each deployment." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p3_zE">
+          <mxGeometry x="15" y="180" width="300" height="135" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_m3" value="&lt;b&gt;Missing in the repository&lt;/b&gt;&lt;br&gt;No &lt;font face=&quot;Courier New&quot;&gt;/metrics&lt;/font&gt; endpoint in the app.&lt;br&gt;No Prometheus configuration, scrape job or interval.&lt;br&gt;No node exporter.&lt;br&gt;No Grafana data source or dashboard.&lt;br&gt;No alert rules or notification channel.&lt;br&gt;No CloudWatch agent or alarm." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFF8E1;strokeColor=#D6A300;strokeWidth=1;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#4E3B00;" vertex="1" parent="p3_zE">
+          <mxGeometry x="335" y="35" width="290" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_prom" value="&lt;b&gt;Prometheus&lt;/b&gt;&lt;br&gt;Proposed. Would scrape a &lt;font face=&quot;Courier New&quot;&gt;/metrics&lt;/font&gt; endpoint and a node exporter on a fixed interval." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#8A8A8A;strokeWidth=1.5;dashed=1;dashPattern=6 4;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#555555;" vertex="1" parent="p3_zE">
+          <mxGeometry x="645" y="35" width="190" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_graf" value="&lt;b&gt;Grafana&lt;/b&gt;&lt;br&gt;Proposed. Would query Prometheus and draw dashboards and alerts." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#8A8A8A;strokeWidth=1.5;dashed=1;dashPattern=6 4;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#555555;" vertex="1" parent="p3_zE">
+          <mxGeometry x="855" y="35" width="190" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_m4" value="&lt;b&gt;What students would watch once metrics exist&lt;/b&gt;&lt;br&gt;CPU and memory of the server, process restarts, requests per second, error rate (4xx and 5xx), response time.&lt;br&gt;None of these are measured today." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#8A8A8A;strokeWidth=1.5;dashed=1;dashPattern=6 4;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#555555;" vertex="1" parent="p3_zE">
+          <mxGeometry x="645" y="180" width="400" height="135" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_m5" value="&lt;b&gt;Troubleshooting today&lt;/b&gt;&lt;br&gt;1. Is the pipeline red? Read the job log.&lt;br&gt;2. Did CodeDeploy fail? Read the lifecycle event.&lt;br&gt;3. Is the service up?&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;systemctl status&lt;/font&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;foodexpress&lt;/font&gt;&lt;br&gt;4. Read the app log with journalctl." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=1.5;align=left;verticalAlign=top;spacing=6;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p3_zE">
+          <mxGeometry x="1065" y="35" width="190" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_e_proc_prom" value="proposed: scrape" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#8A8A8A;endArrow=block;endFill=1;fontSize=10;fontColor=#8A8A8A;labelBackgroundColor=#FFFFFF;dashed=1;dashPattern=6 4;exitX=0.62;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="p3_1" source="p3_proc" target="p3_prom">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_e_prom_graf" value="query" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#8A8A8A;endArrow=block;endFill=1;fontSize=10;fontColor=#8A8A8A;labelBackgroundColor=#FFFFFF;dashed=1;dashPattern=6 4;" edge="1" parent="p3_1" source="p3_prom" target="p3_graf">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_legend" value="Legend" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;fillColor=#FFFFFF;strokeColor=#5B7083;strokeWidth=2;verticalAlign=top;align=left;spacingLeft=10;spacingTop=4;fontSize=14;fontStyle=1;fontColor=#5B7083;" vertex="1" parent="p3_1">
+          <mxGeometry x="1310" y="730" width="590" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_lg_flow" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#1F4E79;endArrow=block;endFill=1;fontSize=10;fontColor=#1F4E79;labelBackgroundColor=#FFFFFF;" edge="1" parent="p3_1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1324" y="781" as="sourcePoint" />
+            <mxPoint x="1384" y="781" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p3_lg_flow_t" value="Solid blue: configured workflow (files and data)" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p3_legend">
+          <mxGeometry x="84" y="36" width="496" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_lg_control" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#C55A11;endArrow=block;endFill=1;fontSize=10;fontColor=#C55A11;labelBackgroundColor=#FFFFFF;" edge="1" parent="p3_1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1324" y="812" as="sourcePoint" />
+            <mxPoint x="1384" y="812" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p3_lg_control_t" value="Solid orange: deployment control path" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p3_legend">
+          <mxGeometry x="84" y="67" width="496" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_lg_traffic" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#2E7D32;endArrow=block;endFill=1;fontSize=10;fontColor=#2E7D32;labelBackgroundColor=#FFFFFF;" edge="1" parent="p3_1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1324" y="843" as="sourcePoint" />
+            <mxPoint x="1384" y="843" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p3_lg_traffic_t" value="Solid green: user / application traffic" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p3_legend">
+          <mxGeometry x="84" y="98" width="496" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_lg_auth" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#6A1B9A;endArrow=block;endFill=1;fontSize=10;fontColor=#6A1B9A;labelBackgroundColor=#FFFFFF;" edge="1" parent="p3_1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1324" y="874" as="sourcePoint" />
+            <mxPoint x="1384" y="874" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p3_lg_auth_t" value="Solid purple + 🔒: authentication" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p3_legend">
+          <mxGeometry x="84" y="129" width="496" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_lg_fail" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#C62828;endArrow=block;endFill=1;fontSize=10;fontColor=#C62828;labelBackgroundColor=#FFFFFF;" edge="1" parent="p3_1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1324" y="905" as="sourcePoint" />
+            <mxPoint x="1384" y="905" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p3_lg_fail_t" value="Red: failure path" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p3_legend">
+          <mxGeometry x="84" y="160" width="496" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_lg_prop" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#8A8A8A;endArrow=block;endFill=1;fontSize=10;fontColor=#8A8A8A;labelBackgroundColor=#FFFFFF;dashed=1;dashPattern=6 4;" edge="1" parent="p3_1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1324" y="936" as="sourcePoint" />
+            <mxPoint x="1384" y="936" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p3_lg_prop_t" value="Dashed grey: optional or proposed, not configured" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#1F2933;" vertex="1" parent="p3_legend">
+          <mxGeometry x="84" y="191" width="496" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_lg_sec" value="🔒 = secret or credential boundary" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#6A1B9A;" vertex="1" parent="p3_legend">
+          <mxGeometry x="14" y="222" width="566" height="28" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
