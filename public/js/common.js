@@ -127,6 +127,7 @@
       el('footer', { class: 'site-footer', id: 'site-footer' },
         el('div', { class: 'container' },
           el('p', {}, '© FoodExpress - a teaching demo of a monolithic web application.'),
+          el('p', {}, 'Address: 101, Plot 30 Vivekanandha nagar, KPHB, Hyderabad, TG 500090'),
           el('p', {}, 'Demo only: no payment is collected and orders are kept in server memory (they disappear when the server restarts).'))));
 
     document.addEventListener('cart:changed', () => {
