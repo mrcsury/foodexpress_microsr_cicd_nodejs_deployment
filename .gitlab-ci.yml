@@ -1,0 +1,65 @@
+# FoodExpress pipeline: test -> package -> deploy to EC2 with AWS CodeDeploy.
+#
+# Set these in GitLab: Settings > CI/CD > Variables
+#   AWS_ROLE_ARN                  IAM role the pipeline assumes (GitLab OIDC, no stored keys)
+#   AWS_DEFAULT_REGION            e.g. ap-south-1
+#   S3_BUCKET                     bucket that stores the deployment zips
+#   CODEDEPLOY_APPLICATION        e.g. foodexpress
+#   CODEDEPLOY_DEPLOYMENT_GROUP   e.g. foodexpress-prod
+
+stages:
+  - test
+  - package
+  - deploy
+
+test:
+  stage: test
+  image: node:20
+  script:
+    - npm ci
+    - npm test
+
+package:
+  stage: package
+  image: node:20
+  script:
+    # Only committed files go in the zip (no .git, node_modules or .env).
+    - git archive --format=zip -o foodexpress.zip HEAD
+  artifacts:
+    paths:
+      - foodexpress.zip
+    expire_in: 1 week
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+deploy:
+  stage: deploy
+  image:
+    name: amazon/aws-cli:latest
+    entrypoint: [""]
+  id_tokens:
+    GITLAB_OIDC_TOKEN:
+      aud: https://gitlab.com
+  environment:
+    name: production
+  # Never run two deployments to the same server at once.
+  resource_group: production
+  variables:
+    S3_KEY: foodexpress/$CI_COMMIT_SHORT_SHA.zip
+  script:
+    - echo "$GITLAB_OIDC_TOKEN" > /tmp/gitlab_oidc_token
+    - export AWS_WEB_IDENTITY_TOKEN_FILE=/tmp/gitlab_oidc_token
+    - export AWS_ROLE_SESSION_NAME="gitlab-$CI_PIPELINE_ID"
+    - aws s3 cp foodexpress.zip "s3://$S3_BUCKET/$S3_KEY"
+    - >
+      DEPLOYMENT_ID=$(aws deploy create-deployment
+      --application-name "$CODEDEPLOY_APPLICATION"
+      --deployment-group-name "$CODEDEPLOY_DEPLOYMENT_GROUP"
+      --s3-location "bucket=$S3_BUCKET,key=$S3_KEY,bundleType=zip"
+      --description "GitLab pipeline $CI_PIPELINE_ID ($CI_COMMIT_SHORT_SHA)"
+      --query deploymentId --output text)
+    - echo "CodeDeploy deployment $DEPLOYMENT_ID started"
+    # Blocks until CodeDeploy finishes; the job fails if the deployment fails.
+    - aws deploy wait deployment-successful --deployment-id "$DEPLOYMENT_ID"
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH

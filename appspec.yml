@@ -1,0 +1,26 @@
+# AWS CodeDeploy instructions (EC2 / Amazon Linux 2023).
+# The CodeDeploy agent on the instance reads this file from the root of the uploaded zip.
+version: 0.0
+os: linux
+
+files:
+  - source: /
+    destination: /opt/foodexpress
+
+# The first deployment lands on top of a manual install:
+# replace those files instead of failing.
+# .env and node_modules are not in the zip, so CodeDeploy never touches them.
+file_exists_behavior: OVERWRITE
+
+hooks:
+  # Installs Node.js if missing, runs "npm ci", keeps the existing .env,
+  # (re)starts the systemd service.
+  AfterInstall:
+    - location: deploy/setup-ec2.sh
+      timeout: 600
+      runas: root
+  # Fails the deployment if the app does not answer /health.
+  ValidateService:
+    - location: deploy/validate-service.sh
+      timeout: 60
+      runas: root
