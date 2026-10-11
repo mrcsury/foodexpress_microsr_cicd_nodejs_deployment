@@ -1,0 +1,23 @@
+# Files that must not go into the image.
+
+# Secrets: settings are passed at run time (docker run --env-file .env)
+.env
+.env.*
+
+# Installed inside the image by "npm ci"
+node_modules/
+
+# Not needed to run the app
+.git/
+.gitignore
+.gitattributes
+.gitlab-ci.yml
+.dockerignore
+Dockerfile
+appspec.yml
+README.md
+deploy/
+docs/
+test/
+terraform/
+*.log
